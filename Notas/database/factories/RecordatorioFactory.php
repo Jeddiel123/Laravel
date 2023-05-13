@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,14 @@ class RecordatorioFactory extends Factory
      */
     public function definition()
     {
+        $user = User::inRandomOrder()->first();
         return [
-            //
+            'titulo' => fake()->word(),
+            'contenido' => fake()->paragraph(),
+            'importancia' => fake()->word(),
+            'fecha' => fake()->dateTime(),
+
+            'id_usuario' => $user->id,
         ];
     }
 }

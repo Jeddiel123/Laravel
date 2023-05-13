@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('asignaturas', function (Blueprint $table) {
             $table->id();
+            $table->string('asignatura');
+
+            $table->foreignId('id_carrera')
+                ->constrained('carreras')
+                ->cascadeOnUpdate();
             $table->timestamps();
         });
     }

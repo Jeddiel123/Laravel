@@ -15,6 +15,17 @@ return new class extends Migration
     {
         Schema::create('notas', function (Blueprint $table) {
             $table->id();
+            $table->string('titulo');
+            $table->text('contenido');
+            $table->text('p_clave');
+            $table->text('resumen');
+
+            $table->foreignId('id_usuario')
+                ->constrained('users')
+                ->cascadeOnUpdate();
+            $table->foreignId('id_tema')
+                ->constrained('temas')
+                ->cascadeOnUpdate();
             $table->timestamps();
         });
     }

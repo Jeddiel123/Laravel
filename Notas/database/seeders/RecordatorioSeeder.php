@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Recordatorio;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +16,13 @@ class RecordatorioSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $users = User::all();
+        foreach ($users as $user) {
+            Recordatorio::factory()
+                ->count(10)
+                ->create([
+                    'id_usuario' => $user->id
+                ]);
+        }
     }
 }

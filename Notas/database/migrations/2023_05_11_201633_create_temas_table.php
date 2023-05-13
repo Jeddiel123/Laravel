@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('temas', function (Blueprint $table) {
             $table->id();
+            $table->string('tema');
+
+            $table->foreignId('id_asignatura')
+                ->constrained('asignaturas')
+                ->cascadeOnUpdate();
             $table->timestamps();
         });
     }

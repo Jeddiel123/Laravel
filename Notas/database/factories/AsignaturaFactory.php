@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Carrera;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,10 @@ class AsignaturaFactory extends Factory
      */
     public function definition()
     {
+        $carrera = Carrera::inRandomOrder()->first();
         return [
-            //
+            'asignatura' => fake()->word(),
+            'id_carrera' => $carrera->id,
         ];
     }
 }
