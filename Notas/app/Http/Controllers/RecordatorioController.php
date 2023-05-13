@@ -50,18 +50,36 @@ class RecordatorioController extends Controller
         ]);
     }
 
-    public function edit(Recordatorio $recordatorio)
+    public function edit($id)
     {
-        //
+        $recordatorio = Recordatorio::find($id);
+        return view('recordatorios.editar')->with([
+            'recordatorio' => $recordatorio,
+        ]);
     }
 
-    public function update(Request $request, Recordatorio $recordatorio)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'titulo' => ['required'],
+            'contenido' => ['required', 'min:10'],
+            'importancia' => ['required'],
+            'fecha' => ['required']
+        ]);
+
+        $recordatorio = Recordatorio::find($id);
+
+        $recordatorio->titulo = $request->titulo;
+        $recordatorio->contenido = $request->contenido;
+        $recordatorio->importancia = $request->importancia;
+        $recordatorio->fecha = $request->fecha;
+        $recordatorio->save();
+        return redirect('recordatorios')->with('flash_message', 'Recordatorio Updated!');
     }
 
-    public function destroy(Recordatorio $recordatorio)
+    public function destroy($id)
     {
-        //
+        Recordatorio::destroy($id);
+        return redirect('recordatorios')->with('flash_message', 'Recordatorio deleted!');
     }
 }

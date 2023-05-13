@@ -20,7 +20,7 @@ class UserFactory extends Factory
     {
         $carrera = Carrera::inRandomOrder()->first();
         return [
-            'nombre' => fake()->name(),
+            'nombre' => fake()->firstName(),
             'apellido' => fake()->lastName(),
             'matricula' => fake()->randomElement($array = ['180700', '190700', '200700']) . fake()->randomNumber(2, true),
             'email' => fake()->unique()->safeEmail(),
