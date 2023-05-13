@@ -22,6 +22,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::resource("/notas", NotaController::class)->middleware('auth');
+Route::get('/notas', [NotaController::class, 'index'])->name('notas.index')->middleware('auth');
+
+Route::resource("/recordatorios", RecordatorioController::class)->middleware('auth');
+Route::get('/recordatorios', [RecordatorioController::class, 'index'])->name('recordatorios.index')->middleware('auth');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
