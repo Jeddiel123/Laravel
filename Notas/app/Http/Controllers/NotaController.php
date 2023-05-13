@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asignatura;
 use App\Models\Nota;
+use App\Models\Tema;
 use Illuminate\Http\Request;
 
 class NotaController extends Controller
@@ -20,7 +22,9 @@ class NotaController extends Controller
 
     public function create()
     {
-        //
+        $asignaturas = Asignatura::where('id_carrera', auth()->user()->id_carrera)->get();
+        $temas = Tema::whereIn('id_asignatura', $asignaturas->pluck('id'))->get();
+        return view('notas.crear', compact('temas', 'asignaturas'));
     }
 
     public function store(Request $request)
