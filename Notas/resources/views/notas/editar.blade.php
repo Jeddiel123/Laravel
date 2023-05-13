@@ -17,6 +17,8 @@
                 @method('PATCH')
                 <div class="text-center">
                     <div class="p-5">
+                        <h1 class=""><strong>Asignatura: </strong>{{ $asignatura->asignatura }}
+                        </h1>
                         <h1 class=""><strong>Tema: </strong>{{ $tema->tema }}
                         </h1>
                     </div>

@@ -65,9 +65,11 @@ class NotaController extends Controller
     {
         $nota = Nota::find($id);
         $tema = Tema::where('id', $nota->id_tema)->first();
+        $asignatura = Asignatura::where('id', $tema->id_asignatura)->first();
         return view('notas.editar')->with([
             'nota' => $nota,
             'tema' => $tema,
+            'asignatura' => $asignatura,
         ]);
     }
 
