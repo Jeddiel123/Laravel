@@ -29,7 +29,17 @@ class NotaController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $user_id = auth()->id();
+
+        $nota = new Nota;
+        $nota->titulo = $request->titulo;
+        $nota->contenido = $request->contenido;
+        $nota->p_clave = $request->p_clave;
+        $nota->resumen = $request->resumen;
+        $nota->id_usuario = $user_id;
+        $nota->id_tema = $request->tema;
+        $nota->save();
+        return redirect('notas')->with('flash_message', 'Nota Addedd!');
     }
     public function show(Nota $nota)
     {
