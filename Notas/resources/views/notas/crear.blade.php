@@ -6,7 +6,13 @@
     </x-slot>
     <div class="card">
         <div class="card-body">
-            <form action="{{ url('notas') }}" method="post" class="w-3/4 m-8 mx-auto text-center text-white bg-blue-600 rounded-3xl">
+            @if ($errors->any())
+                <div class="bg-red-500 w-96 p-4 mt-2 mb-4 mx-auto text-white rounded-3xl text-center">
+                    <p>{{ $errors->first() }}</p>
+                </div>
+            @endif
+            <form action="{{ url('notas') }}" method="post"
+                class="w-3/4 m-8 mx-auto text-center text-white bg-blue-600 rounded-3xl">
                 {!! csrf_field() !!}
                 <div class="text-center">
                     <div class="p-5">

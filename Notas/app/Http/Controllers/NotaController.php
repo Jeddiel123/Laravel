@@ -29,6 +29,14 @@ class NotaController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'tema' => ['required', 'numeric', 'not_in:0'], // Requerido, numérico y debe ser mayor a 0
+            'titulo' => ['required'],
+            'contenido' => ['required', 'min:10'],
+            'p_clave' => ['required'],
+            'resumen' => ['required', 'min:10'],
+        ]);
+
         $user_id = auth()->id();
 
         $nota = new Nota;
@@ -41,23 +49,50 @@ class NotaController extends Controller
         $nota->save();
         return redirect('notas')->with('flash_message', 'Nota Addedd!');
     }
-    public function show(Nota $nota)
+    public function show($id)
     {
-        //
+        $nota = Nota::find($id);
+        $tema = Tema::where('id', $nota->id_tema)->first();
+        $asignatura = Asignatura::where('id', $tema->id_asignatura)->first();
+        return view('notas.mostrar')->with([
+            'nota' => $nota,
+            'tema' => $tema,
+            'asignatura' => $asignatura
+        ]);
     }
 
-    public function edit(Nota $nota)
+    public function edit($id)
     {
-        //
+        $nota = Nota::find($id);
+        $tema = Tema::where('id', $nota->id_tema)->first();
+        return view('notas.editar')->with([
+            'nota' => $nota,
+            'tema' => $tema,
+        ]);
     }
 
-    public function update(Request $request, Nota $nota)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'titulo' => ['required'],
+            'contenido' => ['required', 'min:10'],
+            'p_clave' => ['required'],
+            'resumen' => ['required', 'min:10'],
+        ]);
+
+        $nota = Nota::find($id);
+
+        $nota->titulo = $request->titulo;
+        $nota->contenido = $request->contenido;
+        $nota->p_clave = $request->p_clave;
+        $nota->resumen = $request->resumen;
+        $nota->save();
+        return redirect('notas')->with('flash_message', 'Nota Updated!');
     }
 
-    public function destroy(Nota $nota)
+    public function destroy($id)
     {
-        //
+        Nota::destroy($id);
+        return redirect('notas')->with('flash_message', 'Nota deleted!');
     }
 }
