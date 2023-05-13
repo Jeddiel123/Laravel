@@ -11,13 +11,13 @@ class RecordatorioController extends Controller
     public function index()
     {
         $user_id = auth()->id();
-        $recordatorio = Recordatorio::where('id_usuario', $user_id)->get();
-        return view('recordatorios.index')->with('recordatorio', $recordatorio);
+        $recordatorios = Recordatorio::where('id_usuario', $user_id)->get();
+        return view('recordatorios.index')->with('recordatorios', $recordatorios);
     }
 
     public function create()
     {
-        //
+        return view('recordatorios.crear');
     }
 
     public function store(Request $request)
@@ -25,9 +25,13 @@ class RecordatorioController extends Controller
         //
     }
 
-    public function show(Recordatorio $recordatorio)
+    public function show($id)
     {
-        //
+        $recordatorio = Recordatorio::find($id);
+
+        return view('recordatorios.mostrar')->with([
+            'recordatorio' => $recordatorio,
+        ]);
     }
 
     public function edit(Recordatorio $recordatorio)
