@@ -20,12 +20,12 @@ class UserFactory extends Factory
     {
         $carrera = Carrera::inRandomOrder()->first();
         return [
-            'name' => fake()->name(),
+            'nombre' => fake()->name(),
             'apellido' => fake()->lastName(),
             'matricula' => fake()->randomElement($array = ['180700', '190700', '200700']) . fake()->randomNumber(2, true),
             'email' => fake()->unique()->safeEmail(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'id_career' => $carrera->id,
+            'id_carrera' => $carrera->id,
             'remember_token' => Str::random(10),
         ];
     }

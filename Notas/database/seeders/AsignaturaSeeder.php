@@ -23,7 +23,7 @@ class AsignaturaSeeder extends Seeder
             Asignatura::factory()
                 ->count(6)
                 ->create([
-                    'carrera' => $carrera
+                    'id_carrera' => $carrera
                 ]);
         }
     }
