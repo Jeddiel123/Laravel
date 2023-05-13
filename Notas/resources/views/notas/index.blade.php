@@ -11,11 +11,11 @@
                 <div class="card">
                     <div class="card-body">
                         <a href="{{ url('/notas/create') }}"
-                            class="block w-24 text-center uppercase my-4 mx-16 shadow bg-blue-800 hover:bg-blue-700 focus:shadow-outline focus:outline-none text-white text-xs py-3 rounded-lg">
+                            class="block w-24 text-center uppercase my-4 mx-16 shadow bg-green-800 hover:bg-green-700 focus:shadow-outline focus:outline-none text-white text-xs py-3 rounded-3xl">
                             Nuevo
                         </a>
                         <div class="table-responsive pb-16 mx-16 w-full">
-                            <table class="rounded-lg m-5 w-full mx-auto bg-blue-200">
+                            <table class="rounded-3xl m-5 w-full mx-auto bg-blue-200">
 
                                 <thead class="text-white">
                                     <tr class="border-b-2 text-center uppercase font-bold">
